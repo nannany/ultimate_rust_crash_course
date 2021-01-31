@@ -105,11 +105,12 @@ fn main() {
     }
 
     let handler = thread::spawn(move || {
-        println!("receive {}", rx3.recv().unwrap());
+        for rx in rx3 {
+            println!("receive {} ", rx);
+        }
     });
 
     drop(tx3);
-    handler.join();
 
     println!("Main thread: Exiting.")
 }
